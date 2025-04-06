@@ -1,0 +1,63 @@
+mongo mongodb://user:password@localhost:27017/store?authSource=admin
+
+
+show dbs;
+
+show collections;
+
+
+use admin
+db.createUser({
+  user: "username",
+  pwd: "password",
+  roles: [ { role: "readWrite", db: "store" } ]
+})
+
+use store
+
+db.createCollection("brands")
+db.createCollection("categories")
+db.createCollection("customers")
+db.createCollection("order_items")
+db.createCollection("orders")
+db.createCollection("products")
+db.createCollection("staffs")
+db.createCollection("stocks")
+db.createCollection("stores")
+
+show dbs;
+
+show collections;
+
+
+db.products.insertOne({
+    product_id: 2,
+    product_name: "Ritchey Timberwolf Frameset - 2016",
+    brand_id: 5,
+    category_id: 6,
+    model_year: 2016,
+    list_price: 749.99
+});
+
+
+db.products.insertOne({
+    product_id: 3,
+    product_name: "Surly Wednesday Frameset - 2016",
+    brand_id: 8,
+    category_id: 6,
+    model_year: 2016,
+    list_price: 999.99
+});
+
+
+db.products.insertOne({
+    product_id: 5,
+    product_name: "Heller Shagamaw Frame - 2016",
+    brand_id: 3,
+    category_id: 6,
+    model_year: 2016,
+    list_price: 1320.99
+});
+
+
+db.products.find().pretty()
